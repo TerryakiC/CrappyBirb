@@ -58,10 +58,11 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if alive:
                     if event.key == pygame.K_SPACE:
-                        flapped = True
-                        flap = 0
-                        birb_fall_rate = 5
-                        fall = 0
+                        if not cpu:
+                            flapped = True
+                            flap = 0
+                            birb_fall_rate = 5
+                            fall = 0
                 if event.key == pygame.K_RIGHT:
                     pygame.quit()
                 if event.key == pygame.K_r:
@@ -139,30 +140,25 @@ def main():
         game_window.fill(light_blue)
 
         if birb_position[1] < 5:
-
             alive = False
-        if birb_position[1] + birb_size[1] > 480:
 
+        if birb_position[1] + birb_size[1] > 480:
             alive = False
 
         if birb_position[0] + birb_size[0] == pipe_position[0]:
             if birb_position[1] >= pipe_position[1] and birb_position[1] + birb_size[1] <= pipe_position[1] + pipe_size[1]:
-
                 alive = False
 
         if birb_position[1] + birb_size[1] >= pipe_position[1]:
             if birb_position[0] + birb_size[0] <= pipe_position[0] + pipe_size[0] + 50 and birb_position[0] >= pipe_position[0] - 60:
-
                 alive = False
 
         if birb_position[1] <= pipe2_position[1] + pipe2_size[1]:
             if birb_position[0] + birb_size[0] <= pipe2_position[0] + pipe2_size[0] + 50 and birb_position[0] >= pipe2_position[0] - 60:
-
                 alive = False
 
         if birb_position[0] + birb_size[0] == pipe2_position[0]:
             if birb_position[1] >= pipe2_position[1] and birb_position[1] + birb_size[1] <= pipe2_position[1] + pipe2_size[1]:
-
                 alive = False
 
         if birb_position[0] + birb_size[0] == pipe3_position[0]:
